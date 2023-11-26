@@ -19,7 +19,14 @@ const PORT = process.env.PORT || 8000
 
 
 app.get('/',(req,res)=>{
-    res.status(404).send();
+    let example = {
+        up_time: Math.floor(process.uptime())
+      };
+      
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify(example));
+    // res.status(404).send();
 })
 
 io.on('connection',(socket)=>{
